@@ -2,12 +2,6 @@ const mongoose = require("mongoose");
 
 const { roles } = require("../config");
 
-const Portfolio = mongoose.Schema({
-  ownerId: { type: String, required: true },
-  stockName: { type: String, required: true },
-  amountOwned: { type: Number, required: true },
-});
-
 //add kyc
 const Users = mongoose.Schema({
   userid: { type: String },
@@ -23,7 +17,6 @@ const Users = mongoose.Schema({
   refreshToken: { type: String },
   passwordResetToken: { type: String },
   password: { type: String, required: true },
-  portfolio: [Portfolio],
   created: { type: Date, default: Date.now },
 });
 
