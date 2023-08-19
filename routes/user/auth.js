@@ -8,6 +8,7 @@ const { verifyjwt } = require("../../middleware/verifyjwt");
 const { ForgotPassword } = require("../../controllers/auth/forgot-password");
 const { RefreshToken } = require("../../controllers/auth/refreshjwt");
 const { Logout } = require("../../controllers/auth/logout");
+const { googleOAuth } = require("../../controllers/auth/googleOAuth");
 const formValidate = require("../../middleware/validate");
 const {
   regSchema,
@@ -15,7 +16,7 @@ const {
   updatePasswordSchema,
   forgotPasswordSchema,
   resetPasswordSchema,
-} = require("../../yupschemas");
+} = require("../../yupSchemas");
 
 router.post("/register", formValidate(regSchema), Register);
 router.post("/login", formValidate(loginSchema), Login);
@@ -38,5 +39,7 @@ router.post(
   formValidate(updatePasswordSchema),
   UpdatePassword
 );
+
+router.get("/google", googleOAuth);
 
 module.exports = router;
