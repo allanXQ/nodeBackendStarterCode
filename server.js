@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
+const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -18,6 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1/auth", require("./routes/user/auth"));
 app.use("/api/v1/wallet", require("./routes/user/wallet"));
+
+app.use(errorHandler);
 
 const DBconn = async () => {
   return mongoose
