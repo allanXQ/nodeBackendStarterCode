@@ -1,8 +1,9 @@
 const { default: mongoose } = require("mongoose");
-const WalletConfig = require("../../../config/wallet");
+const { WalletConfig } = require("../../../config");
 const Messages = require("../../../utils/messages");
 
 const MpesaWithdraw = async (req, res) => {
+  let session;
   try {
     const { phone, amount } = req.body;
     const { minWithdrawal, withdrawalFeePercentage } = WalletConfig;
@@ -11,7 +12,7 @@ const MpesaWithdraw = async (req, res) => {
     if (!getUser) {
       return res.status(400).json({ message: Messages.userNotFound });
     }
-    const getBalance = parseInt(getUser.balance);
+    const getBalance = parseInt(getUser.accountBalance);
     const username = getUser.username;
     const taxAmount = intAmount * withdrawalFeePercentage;
     const totalAmount = intAmount + taxAmount;
@@ -40,7 +41,7 @@ const MpesaWithdraw = async (req, res) => {
       });
     }
 
-    const session = await mongoose.startSession();
+    session = await mongoose.startSession();
     session.startTransaction();
 
     await Withdraw.create(
@@ -54,7 +55,7 @@ const MpesaWithdraw = async (req, res) => {
     const updateUser = await User.updateOne(
       { username },
       {
-        $inc: { balance: -totalAmount },
+        $inc: { accountBalance: -totalAmount },
       },
       { session, new: true }
     );
@@ -62,11 +63,13 @@ const MpesaWithdraw = async (req, res) => {
       return res.status(400).json({ message: Messages.withdrawalFailed });
     }
     await session.commitTransaction();
-    session.endSession();
     return res.status(200).json({ message: Messages.withdrawalSuccess });
   } catch (error) {
+    session && (await session.abortTransaction());
     console.log(error);
     return res.status(500).json({ message: Messages.serverError });
+  } finally {
+    session && session.endSession();
   }
 };
 
