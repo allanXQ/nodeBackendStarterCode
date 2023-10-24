@@ -1,0 +1,29 @@
+2023-10-24 15:58:47 error: uncaughtException: app.use() requires a middleware function
+TypeError: app.use() requires a middleware function
+    at Function.use (/home/allan/Desktop/projects/javascript/Portolio Projects/hive/server/node_modules/express/lib/application.js:217:11)
+    at Object.<anonymous> (/home/allan/Desktop/projects/javascript/Portolio Projects/hive/server/server.js:32:5)
+    at Module._compile (node:internal/modules/cjs/loader:1267:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1321:10)
+    at Module.load (node:internal/modules/cjs/loader:1125:32)
+    at Module._load (node:internal/modules/cjs/loader:965:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:83:12)
+    at node:internal/main/run_main_module:23:47
+2023-10-24 15:59:08 error: uncaughtException: DBconn is not a function
+TypeError: DBconn is not a function
+    at Object.<anonymous> (/home/allan/Desktop/projects/javascript/Portolio Projects/hive/server/server.js:34:1)
+    at Module._compile (node:internal/modules/cjs/loader:1267:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1321:10)
+    at Module.load (node:internal/modules/cjs/loader:1125:32)
+    at Module._load (node:internal/modules/cjs/loader:965:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:83:12)
+    at node:internal/main/run_main_module:23:47
+2023-10-24 16:19:32 error: uncaughtException: app.use() requires a middleware function
+TypeError: app.use() requires a middleware function
+    at Function.use (/home/allan/Desktop/projects/javascript/Portolio Projects/hive/server/node_modules/express/lib/application.js:217:11)
+    at Object.<anonymous> (/home/allan/Desktop/projects/javascript/Portolio Projects/hive/server/server.js:32:5)
+    at Module._compile (node:internal/modules/cjs/loader:1267:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1321:10)
+    at Module.load (node:internal/modules/cjs/loader:1125:32)
+    at Module._load (node:internal/modules/cjs/loader:965:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:83:12)
+    at node:internal/main/run_main_module:23:47

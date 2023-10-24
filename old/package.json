@@ -1,5 +1,5 @@
 {
-  "name": "hive-server",
+  "name": "backend",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -10,7 +10,6 @@
   "author": "Allan Juma",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -18,24 +17,10 @@
     "express": "^4.18.2",
     "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.1",
-    "module-alias": "^2.2.3",
     "mongoose": "^7.4.1",
     "nodejs-nodemailer-outlook": "^1.2.4",
     "nodemon": "^3.0.1",
     "uuid": "^9.0.0",
-    "winston": "^3.10.0",
     "yup": "^1.2.0"
-  },
-  "_moduleAliases": {
-    "@root": ".",
-    "@config": "./src/config",
-    "@controllers": "./src/controllers",
-    "@middleware": "./src/middleware",
-    "@models": "./src/models",
-    "@routes": "./src/routes",
-    "@services": "./src/services",
-    "@validations": "./src/validations",
-    "@utils": "./src/utils",
-    "@yupschemas": "./src/yupschemas"
   }
 }

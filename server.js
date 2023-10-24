@@ -1,11 +1,12 @@
+require("module-alias/register");
 require("dotenv").config();
 
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
-const errorHandler = require("./middleware/errorHandler");
+const { errorHandler } = require("@middleware");
+const { DBConn } = require("@config");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -13,30 +14,21 @@ const port = process.env.PORT || 5000;
 app.use(cookieParser());
 app.use(helmet());
 
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/v1/auth", require("./routes/user/auth"));
-app.use("/api/v1/wallet", require("./routes/user/wallet"));
+// app.use("/api/v1/app", require("./routes/app/index"));
+// app.use("/api/v1/auth", require("./routes/auth/index"));
+// app.use("/api/v1/user", require("./routes/user/index"));
+
+// app.use("/api/v1/ZAdmin", require("./routes/admin"));
 
 app.use(errorHandler);
 
-const DBconn = async () => {
-  return mongoose
-    .connect(process.env.DATABASE, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .then(() => {
-      console.log("Connected to database");
-      app.listen(port, () => {
-        console.log(`Server running on port ${port}`);
-      });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-
-DBconn();
+DBConn(app, port);
